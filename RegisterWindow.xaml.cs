@@ -39,19 +39,21 @@ namespace TourOperatorManagement
                 {
                     model.SaveChanges();
                     MessageBox.Show("Ваш аккаунт зарегистрирован и отправлен на верификацию, это может занять несколько дней");
-                    log = $"Регистрация | Запрос на верификацию оператора {anOperator.FullName}\n";
+                    log = $"Регистрация | Запрос на верификацию оператора {anOperator.FullName}";
                     Logger.Log(log);
                     btnCancel_Click(sender, e);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message.ToString());
+                    log = $"Регистрация | {ex.Message}";
+                    Logger.Log(log);
                 }
             }
             else
             {
                 MessageBox.Show("Заполните все поля");
-                log = $"Регистрация | Пустые поля\n";
+                log = $"Регистрация | Пустые поля";
                 Logger.Log(log);
             }
         }

@@ -31,27 +31,27 @@ namespace TourOperatorManagement
                         MainWindow window = new MainWindow();
                         window.Show();
                         this.Close();
-                        log = $"Авторизация | Вход оператора {person.FullName}\n";
+                        log = $"Авторизация | Вход оператора {person.FullName}";
                         Logger.Log(log);
                     }
                     else
                     {
                         MessageBox.Show("Ваш аккаунт на верификации, попробуйте позже");
-                        log = $"Авторизация | Попытка входа в неверифицированный аккаунт\n";
+                        log = $"Авторизация | Попытка входа в неверифицированный аккаунт";
                         Logger.Log(log);
                     }
                 }
                 else
                 {
                     MessageBox.Show("Неверный логин или пароль");
-                    log = $"Авторизация | Неверный логин или пароль\n";
+                    log = $"Авторизация | Неверный логин или пароль";
                     Logger.Log(log);
                 }
             }
             else
             {
                 MessageBox.Show("Заполните все поля");
-                log = $"Авторизация | Пустые поля логина и пароля\n";
+                log = $"Авторизация | Пустые поля логина и пароля";
                 Logger.Log(log);
             }
         }
