@@ -10,6 +10,8 @@ namespace TourOperatorManagement
     public partial class RegisterWindow : Window
     {
         private AgencyModel model = new AgencyModel();
+        public static string log;
+
         public RegisterWindow()
         {
             InitializeComponent();
@@ -37,6 +39,8 @@ namespace TourOperatorManagement
                 {
                     model.SaveChanges();
                     MessageBox.Show("Ваш аккаунт зарегистрирован и отправлен на верификацию, это может занять несколько дней");
+                    log = $"Регистрация | Запрос на верификацию оператора {anOperator.FullName}\n";
+                    Logger.Log(log);
                     btnCancel_Click(sender, e);
                 }
                 catch (Exception ex)
@@ -45,7 +49,11 @@ namespace TourOperatorManagement
                 }
             }
             else
+            {
                 MessageBox.Show("Заполните все поля");
+                log = $"Регистрация | Пустые поля\n";
+                Logger.Log(log);
+            }
         }
     }
 }

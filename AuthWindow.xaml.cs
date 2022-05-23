@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TourOperatorManagement.Models;
 
 namespace TourOperatorManagement
@@ -21,6 +11,7 @@ namespace TourOperatorManagement
     public partial class AuthWindow : Window
     {
         private AgencyModel model = new AgencyModel();
+        public static string log;
         public AuthWindow()
         {
             InitializeComponent();
@@ -40,20 +31,28 @@ namespace TourOperatorManagement
                         MainWindow window = new MainWindow();
                         window.Show();
                         this.Close();
+                        log = $"Авторизация | Вход оператора {person.FullName}\n";
+                        Logger.Log(log);
                     }
                     else
                     {
                         MessageBox.Show("Ваш аккаунт на верификации, попробуйте позже");
+                        log = $"Авторизация | Попытка входа в неверифицированный аккаунт\n";
+                        Logger.Log(log);
                     }
                 }
                 else
                 {
                     MessageBox.Show("Неверный логин или пароль");
+                    log = $"Авторизация | Неверный логин или пароль\n";
+                    Logger.Log(log);
                 }
             }
             else
             {
                 MessageBox.Show("Заполните все поля");
+                log = $"Авторизация | Пустые поля логина и пароля\n";
+                Logger.Log(log);
             }
         }
 
