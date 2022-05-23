@@ -64,11 +64,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\AgencyModel.cs" />
+    <Compile Include="Models\Clients.cs" />
     <Compile Include="Models\Operators.cs" />
+    <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Tours.cs" />
     <Compile Include="Models\TourStates.cs" />
     <Compile Include="Models\TourType.cs" />
+    <Compile Include="Models\Track.cs" />
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>

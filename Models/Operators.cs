@@ -8,7 +8,6 @@ namespace TourOperatorManagement.Models
 
     public partial class Operators
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(100)]

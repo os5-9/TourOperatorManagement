@@ -24,10 +24,10 @@
             <RowDefinition/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="ФИО" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right"/>
-        <TextBlock Text="Логин" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right"/>
-        <TextBlock Text="Пароль" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right"/>
-        <TextBlock Text="Комментарий" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right"/>
+        <TextBlock Text="ФИО" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Text="Логин" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Text="Пароль" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Text="Комментарий" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <TextBox x:Name="tbFullName" Grid.Column="3" Grid.Row="1" Width="auto"/>
         <TextBox x:Name="tbLogin" Grid.Column="3" Grid.Row="2" Width="auto"/>
         <TextBox x:Name="tbPassword" Grid.Column="3" Grid.Row="3" Width="auto"/>

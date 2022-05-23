@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using TourOperatorManagement.Models;
 
 namespace TourOperatorManagement
 {
@@ -19,6 +9,7 @@ namespace TourOperatorManagement
     /// </summary>
     public partial class RegisterWindow : Window
     {
+        private AgencyModel model = new AgencyModel();
         public RegisterWindow()
         {
             InitializeComponent();
@@ -26,12 +17,35 @@ namespace TourOperatorManagement
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            AuthWindow auth = new AuthWindow();
+            auth.Show();
+            this.Close();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(tbFullName.Text) && !string.IsNullOrEmpty(tbLogin.Text) && !string.IsNullOrEmpty(tbPassword.Text) && !string.IsNullOrEmpty(tbComment.Text))
+            {
+                Operators anOperator = new Operators();
+                anOperator.FullName = tbFullName.Text;
+                anOperator.Login = tbLogin.Text;
+                anOperator.Password = tbPassword.Text;
+                anOperator.Comment = tbComment.Text;
+                anOperator.IsDenied = 0;
+                model.Operators.Add(anOperator);
+                try
+                {
+                    model.SaveChanges();
+                    MessageBox.Show("Ваш аккаунт зарегистрирован и отправлен на верификацию, это может занять несколько дней");
+                    btnCancel_Click(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+            else
+                MessageBox.Show("Заполните все поля");
         }
     }
 }
