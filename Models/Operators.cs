@@ -20,6 +20,9 @@ namespace TourOperatorManagement.Models
         [StringLength(100)]
         public string Password { get; set; }
 
+        [StringLength(250)]
+        public string Comment { get; set; }
+
         public byte? IsDenied { get; set; }
     }
 }

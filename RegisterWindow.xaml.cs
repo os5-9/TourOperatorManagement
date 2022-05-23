@@ -23,5 +23,15 @@ namespace TourOperatorManagement
         {
             InitializeComponent();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

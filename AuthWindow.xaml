@@ -20,6 +20,7 @@
             <RowDefinition/>
             <RowDefinition Height="10"/>
             <RowDefinition/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <Label Content="Логин" FontSize="25" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1"/>
@@ -29,5 +30,6 @@
         <PasswordBox KeyDown="Password_KeyDown" x:Name="tbPassword" Width="auto" Height="auto" Grid.Column="1" Grid.Row="4"/>
 
         <Button x:Name="btnEnter" Click="btnEnter_Click" Content="Войти" FontSize="25" Grid.Column="1" Grid.Row="6"/>
+        <TextBlock x:Name="tbGoToRegister" Text="Зарегистрироваться" Grid.Column="1" Grid.Row="7" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="tbGoToRegister_MouseDown" Foreground="#FF189DB7" TextDecorations="Underline" />
     </Grid>
 </Window>

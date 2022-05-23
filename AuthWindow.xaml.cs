@@ -28,5 +28,10 @@ namespace TourOperatorManagement
         {
 
         }
+
+        private void tbGoToRegister_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
