@@ -11,7 +11,6 @@ namespace TourOperatorManagement
     /// </summary>
     public partial class AddEditTourWindow : Window
     {
-        private AgencyModel model = new AgencyModel();
         private static string log;
         private Tours tour;
 
