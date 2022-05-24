@@ -73,6 +73,7 @@ namespace TourOperatorManagement
                     tour.State = cmbStatus.SelectedIndex + 1;
                     tour.Type = cmbType.SelectedIndex + 1;
                     tour.IsExists = 1;
+                    tour.IsApproved = 0;
                     if (TourRepository.AddTour(tour))
                     {
                         MessageBox.Show("Добавление данных прошло успешно");

@@ -48,6 +48,12 @@ namespace TourOperatorManagement
             }
         }
 
+        public static void RemoveFromSale(int id)
+        {
+            var tour = TourRepository.GetToutByID(id);
+            tour.IsExists = 0;
+            model.SaveChanges();
+        }
 
         public static IEnumerable<Tours> SearchTour(string status, string type, string city, string country, int price, DateTime arrivalS, DateTime arrivalF, DateTime departureS, DateTime departureF)
         {

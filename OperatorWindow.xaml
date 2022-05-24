@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourOperatorManagement"
         mc:Ignorable="d"
-    Title="" Height="940" Width="1400" MinWidth="1100" MinHeight="800" WindowStartupLocation="CenterScreen">
+    Title="" Height="940" Width="1400" MinWidth="850" MinHeight="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel x:Name="wPanel">
@@ -54,12 +54,12 @@
                     <Canvas Width="190" Height="87">
                         <Button x:Name="btnEdit" Content="Редактировать" Width="180" Canvas.Left="5" Canvas.Top="25" Click="btnEdit_Click"/>
                     </Canvas>
-                    <Canvas Width="130" Height="87">
-                        <Button Content="Снять с продажи" Width="180" Canvas.Left="5" Canvas.Top="25"/>
+                    <Canvas Width="190" Height="87">
+                        <Button x:Name="btnRemove" Content="Снять с продажи" Width="180" Canvas.Left="5" Canvas.Top="25" Click="btnRemove_Click"/>
                     </Canvas>
                 </WrapPanel>
             </StackPanel>
-            <DataGrid x:Name="dgTour" FontSize="20" AutoGenerateColumns="False"  CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
+            <DataGrid x:Name="dgTour" FontSize="20" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Номер" Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="Город" Binding="{Binding City}"/>

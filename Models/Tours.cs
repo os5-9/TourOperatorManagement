@@ -37,6 +37,8 @@ namespace TourOperatorManagement.Models
 
         public byte? IsExists { get; set; }
 
+        public byte? IsApproved { get; set; }
+
         public virtual TourStates TourStates { get; set; }
 
         public virtual TourType TourType { get; set; }

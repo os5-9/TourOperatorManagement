@@ -114,5 +114,26 @@ namespace TourOperatorManagement
                 Logger.Log(log);
             }
         }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = (Tours)dgTour.SelectedItem;
+            if (selected != null)
+            {
+                if (MessageBox.Show("Вы уверенны, что хотите снять с продажи выбранный тур?\nДанное действие нельзя будет отменить", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    TourRepository.RemoveFromSale(selected.ID);
+                    log = $"Главное окно оператора | Снятие с продаж тура №{selected.ID}";
+                    Logger.Log(log);
+                    UpdateTours();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите тур для снятия с продажи");
+                log = $"Главное окно оператора | Попытка снятия с продажи без выбора строки";
+                Logger.Log(log);
+            }
+        }
     }
 }
