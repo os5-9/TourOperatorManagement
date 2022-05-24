@@ -23,8 +23,7 @@ namespace TourOperatorManagement.Models
         [StringLength(45)]
         public string Country { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal? Price { get; set; }
+        public int? Price { get; set; }
 
         public int? State { get; set; }
 
