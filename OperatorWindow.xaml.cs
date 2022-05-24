@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TourOperatorManagement.Models;
 
 namespace TourOperatorManagement
@@ -21,6 +12,7 @@ namespace TourOperatorManagement
     public partial class OperatorWindow : Window
     {
         private IEnumerable<Tours> allTours;
+        private static string log;
 
         public OperatorWindow()
         {
@@ -30,6 +22,8 @@ namespace TourOperatorManagement
             cmbStatus.SelectedIndex = 0;
             cmbType.SelectedIndex = 0;
             UpdateTours();
+            log = $"Главное окно оператора | Просмотр данных";
+            Logger.Log(log);
         }
 
         private void UpdateTours()
@@ -92,5 +86,33 @@ namespace TourOperatorManagement
                 e.Handled = true;
         }
 
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditTourWindow window = new AddEditTourWindow(null);
+            window.Show();
+            log = $"Главное окно оператора | Переход к добавлению тура";
+            Logger.Log(log);
+            this.Close();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = (Tours)dgTour.SelectedItem;
+            if (selected != null)
+            {
+                Tours tour = TourRepository.GetToutByID(selected.ID);
+                AddEditTourWindow window = new AddEditTourWindow(tour);
+                window.Show();
+                log = $"Главное окно оператора | Переход к редактированию тура №{tour.ID}";
+                Logger.Log(log);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Выберите тур для редактирования");
+                log = $"Главное окно оператора | Нажатие на редактирование без выбора строки";
+                Logger.Log(log);
+            }
+        }
     }
 }

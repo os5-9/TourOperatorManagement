@@ -28,10 +28,6 @@ namespace TourOperatorManagement.Models
                 .HasForeignKey(e => e.ClientID);
 
             modelBuilder.Entity<Tours>()
-                .Property(e => e.Price)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Tours>()
                 .HasMany(e => e.Track)
                 .WithOptional(e => e.Tours)
                 .HasForeignKey(e => e.TourID);

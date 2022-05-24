@@ -13,8 +13,6 @@ namespace TourOperatorManagement.Models
         {
             Track = new HashSet<Track>();
         }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(45)]

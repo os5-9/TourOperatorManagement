@@ -40,9 +40,9 @@
 
         <TextBox x:Name="tbCity" Text="{Binding City}" Grid.Column="3" Grid.Row="1" Width="auto"/>
         <TextBox x:Name="tbCountry" Text="{Binding Country}" Grid.Column="3" Grid.Row="2" Width="auto"/>
-        <TextBox x:Name="tbPrice" Text="{Binding Price}" Grid.Column="3" Grid.Row="3" Width="auto"/>
-        <DatePicker x:Name="dpDeparture" Text="{Binding Departure}" Grid.Column="3" Grid.Row="4" Width="auto"/>
-        <DatePicker x:Name="dpArrival" Text="{Binding Arrival}" Grid.Column="3" Grid.Row="5" Width="auto"/>
+        <TextBox x:Name="tbPrice" Text="{Binding Price}" Grid.Column="3" Grid.Row="3" Width="auto" PreviewTextInput="ControlForDigit"/>
+        <DatePicker x:Name="dpDeparture" SelectedDate="{Binding Departure}" Grid.Column="3" Grid.Row="4" Width="auto"/>
+        <DatePicker x:Name="dpArrival" SelectedDate="{Binding Arrival}" Grid.Column="3" Grid.Row="5" Width="auto"/>
         <ComboBox x:Name="cmbStatus" Grid.Column="3" Grid.Row="6" Width="auto">
             <ComboBoxItem Content="Обычная"/>
             <ComboBoxItem Content="Горячая"/>
@@ -51,9 +51,9 @@
             <ComboBoxItem Content="Прямой полет"/>
             <ComboBoxItem Content="С пересадками"/>
         </ComboBox>
-        <TextBox x:Name="tbTickets" Text="{Binding Tickets}" Grid.Column="3" Grid.Row="8" Width="auto"/>
+        <TextBox x:Name="tbTickets" Text="{Binding Tickets}" Grid.Column="3" Grid.Row="8" Width="auto" PreviewTextInput="ControlForDigit"/>
         
-        <Button x:Name="btnCancel" Content="Отмена" Grid.Column="1" Grid.Row="10"/>
-        <Button x:Name="btnSave" Content="Сохранить" Grid.Column="3" Grid.Row="10"/>
+        <Button x:Name="btnCancel" Content="Отмена" Grid.Column="1" Grid.Row="10" Click="btnCancel_Click"/>
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Column="3" Grid.Row="10" Click="btnSave_Click"/>
     </Grid>
 </Window>

@@ -14,6 +14,41 @@ namespace TourOperatorManagement
             return list;
         }
 
+        public static Tours GetToutByID(int id)
+        {
+            Tours tour = model.Tours.FirstOrDefault(x => x.ID == id); 
+            return tour;
+        }
+
+        public static bool AddTour(Tours newTour)
+        {
+            try
+            {
+                model.Tours.Add(newTour);
+                model.SaveChanges();
+                return true;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message.ToString());
+                return false;
+            }
+        }
+
+        public static bool EditTour()
+        {
+            try
+            {
+                model.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
         public static IEnumerable<Tours> SearchTour(string status, string type, string city, string country, int price, DateTime arrivalS, DateTime arrivalF, DateTime departureS, DateTime departureF)
         {
             var list = model.Tours
