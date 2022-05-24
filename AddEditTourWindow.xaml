@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourOperatorManagement"
         mc:Ignorable="d"
-        Title="AddEditTourWindow" Height="450" Width="800">
+        Title="" Height="450" Width="600">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
         
+        <TextBlock VerticalAlignment="Center" Text="Город" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock VerticalAlignment="Center" Text="Страна" Grid.Column="1" Grid.Row="2"/>
+        <TextBlock VerticalAlignment="Center" Text="Цена за билет" Grid.Column="1" Grid.Row="3"/>
+        <TextBlock VerticalAlignment="Center" Text="Дата отправки" Grid.Column="1" Grid.Row="4"/>
+        <TextBlock VerticalAlignment="Center" Text="Дата прибытия" Grid.Column="1" Grid.Row="5"/>
+        <TextBlock VerticalAlignment="Center" Text="Статус путевки" Grid.Column="1" Grid.Row="6"/>
+        <TextBlock VerticalAlignment="Center" Text="Тип путевки" Grid.Column="1" Grid.Row="7"/>
+        <TextBlock VerticalAlignment="Center" Text="Количество билетов" Grid.Column="1" Grid.Row="8"/>
+
+        <TextBox x:Name="tbCity" Text="{Binding City}" Grid.Column="3" Grid.Row="1" Width="auto"/>
+        <TextBox x:Name="tbCountry" Text="{Binding Country}" Grid.Column="3" Grid.Row="2" Width="auto"/>
+        <TextBox x:Name="tbPrice" Text="{Binding Price}" Grid.Column="3" Grid.Row="3" Width="auto"/>
+        <DatePicker x:Name="dpDeparture" Text="{Binding Departure}" Grid.Column="3" Grid.Row="4" Width="auto"/>
+        <DatePicker x:Name="dpArrival" Text="{Binding Arrival}" Grid.Column="3" Grid.Row="5" Width="auto"/>
+        <ComboBox x:Name="cmbStatus" Grid.Column="3" Grid.Row="6" Width="auto">
+            <ComboBoxItem Content="Обычная"/>
+            <ComboBoxItem Content="Горячая"/>
+        </ComboBox>
+        <ComboBox x:Name="cmbType" Grid.Column="3" Grid.Row="7" Width="auto">
+            <ComboBoxItem Content="Прямой полет"/>
+            <ComboBoxItem Content="С пересадками"/>
+        </ComboBox>
+        <TextBox x:Name="tbTickets" Text="{Binding Tickets}" Grid.Column="3" Grid.Row="8" Width="auto"/>
+        
+        <Button x:Name="btnCancel" Content="Отмена" Grid.Column="1" Grid.Row="10"/>
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Column="3" Grid.Row="10"/>
     </Grid>
 </Window>
