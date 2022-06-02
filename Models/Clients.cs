@@ -25,6 +25,9 @@ namespace TourOperatorManagement.Models
         [StringLength(6)]
         public string PassportN { get; set; }
 
+        [StringLength(13)]
+        public string BirthCertificateNumber { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime? BDay { get; set; }
 
