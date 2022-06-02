@@ -32,8 +32,8 @@
         <TextBlock VerticalAlignment="Center" Text="Город" Grid.Column="1" Grid.Row="1"/>
         <TextBlock VerticalAlignment="Center" Text="Страна" Grid.Column="1" Grid.Row="2"/>
         <TextBlock VerticalAlignment="Center" Text="Цена за билет" Grid.Column="1" Grid.Row="3"/>
-        <TextBlock VerticalAlignment="Center" Text="Дата отправки" Grid.Column="1" Grid.Row="4"/>
-        <TextBlock VerticalAlignment="Center" Text="Дата прибытия" Grid.Column="1" Grid.Row="5"/>
+        <TextBlock VerticalAlignment="Center" Text="Дата начала тура" Grid.Column="1" Grid.Row="4"/>
+        <TextBlock VerticalAlignment="Center" Text="Дата окончания тура" Grid.Column="1" Grid.Row="5"/>
         <TextBlock VerticalAlignment="Center" Text="Статус путевки" Grid.Column="1" Grid.Row="6"/>
         <TextBlock VerticalAlignment="Center" Text="Тип путевки" Grid.Column="1" Grid.Row="7"/>
         <TextBlock VerticalAlignment="Center" Text="Количество билетов" Grid.Column="1" Grid.Row="8"/>
@@ -51,7 +51,15 @@
             <ComboBoxItem Content="Прямой полет"/>
             <ComboBoxItem Content="С пересадками"/>
         </ComboBox>
-        <TextBox x:Name="tbTickets" Text="{Binding Tickets}" Grid.Column="3" Grid.Row="8" Width="auto" PreviewTextInput="ControlForDigit"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="8">
+            <Button x:Name="btnMinus" Content="-" Width="40" Click="btnMinus_Click"/>
+            <TextBox x:Name="tbTickets" Width="200" Text="{Binding Tickets}" Grid.Column="3" Grid.Row="8" PreviewTextInput="ControlForDigit">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate />
+                </Validation.ErrorTemplate>
+            </TextBox>
+            <Button x:Name="btnPlus" Content="+" Width="40" Click="btnPlus_Click"/>
+        </StackPanel>        
         
         <Button x:Name="btnCancel" Content="Отмена" Grid.Column="1" Grid.Row="10" Click="btnCancel_Click"/>
         <Button x:Name="btnSave" Content="Сохранить" Grid.Column="3" Grid.Row="10" Click="btnSave_Click"/>

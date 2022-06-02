@@ -23,6 +23,8 @@ namespace TourOperatorManagement
             {
                 tour = new Tours();
                 this.Title = "Добавление тура";
+                tbTickets.Text = "0";
+                tour.Tickets = 0;
             }
             else
             {
@@ -51,6 +53,9 @@ namespace TourOperatorManagement
         {
             if (Validation())
             {
+                tour.State = cmbStatus.SelectedIndex + 1;
+                tour.Type = cmbType.SelectedIndex + 1;
+                tour.IsExists = 1;
                 if (tour.ID != 0)
                 {
                     if (TourRepository.EditTour())
@@ -69,9 +74,6 @@ namespace TourOperatorManagement
                 }
                 else
                 {
-                    tour.State = cmbStatus.SelectedIndex + 1;
-                    tour.Type = cmbType.SelectedIndex + 1;
-                    tour.IsExists = 1;
                     tour.IsApproved = 0;
                     if (TourRepository.AddTour(tour))
                     {
@@ -111,11 +113,11 @@ namespace TourOperatorManagement
             }
             if (dpDeparture.SelectedDate == null)
             {
-                errors.AppendLine("Выберите дату отправки");
+                errors.AppendLine("Выберите дату окончания тура");
             }
             if (dpArrival.SelectedDate == null)
             {
-                errors.AppendLine("Выберите дату отправки");
+                errors.AppendLine("Выберите дату начала тура");
             }
             if (cmbStatus.SelectedItem == null)
             {
@@ -133,6 +135,10 @@ namespace TourOperatorManagement
             {
                 errors.AppendLine("Дата отправки не может быть больше даты прибытия");
             }
+            if (tbTickets.Text == "0")
+            {
+                errors.AppendLine("Введите количество билетов");
+            }
 
             if (errors.Length > 0)
             {
@@ -144,6 +150,43 @@ namespace TourOperatorManagement
             else
             {
                 return true;
+            }
+        }
+
+        private void btnMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbTickets.Text))
+            {
+                int tickets = int.Parse(tbTickets.Text);
+                if (tickets == 1)
+                {
+                    btnMinus.IsEnabled = false;
+                    tbTickets.Text = (tickets - 1).ToString();
+                    return;
+                }
+                if (tickets > 0)
+                {
+                    btnMinus.IsEnabled = true;
+                    tbTickets.Text = (tickets - 1).ToString();
+                }
+            }
+            else
+            {
+                tbTickets.Text = "0";
+            }
+        }
+
+        private void btnPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbTickets.Text))
+            {
+                int tickets = int.Parse(tbTickets.Text);
+                btnMinus.IsEnabled = true;
+                tbTickets.Text = (tickets + 1).ToString();
+            }
+            else
+            {
+                tbTickets.Text = "1";
             }
         }
     }

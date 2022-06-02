@@ -28,9 +28,10 @@ namespace TourOperatorManagement
                     var person = model.Operators.Where(x => x.Password == password && x.Login == login).FirstOrDefault();
                     if (person.IsDenied == 1)
                     {
+                       
                         OperatorWindow window = new OperatorWindow();
                         window.Show();
-                        this.Close();
+                        this.Close(); 
                         log = $"Авторизация | Вход оператора {person.FullName}";
                         Logger.Log(log);
                     }

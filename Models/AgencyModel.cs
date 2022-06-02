@@ -12,6 +12,11 @@ namespace TourOperatorManagement.Models
         {
         }
 
+        static AgencyModel()
+        {
+            Database.SetInitializer<AgencyModel>(new MyContextInitializer());
+        }
+
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<Operators> Operators { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
@@ -41,6 +46,7 @@ namespace TourOperatorManagement.Models
                 .HasMany(e => e.Tours)
                 .WithOptional(e => e.TourType)
                 .HasForeignKey(e => e.Type);
+
         }
     }
 }

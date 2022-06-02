@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using TourOperatorManagement.Models;
 
 namespace TourOperatorManagement
@@ -13,22 +15,62 @@ namespace TourOperatorManagement
     {
         private IEnumerable<Tours> allTours;
         private static string log;
-
+        private int countTours = 18;
+        private int page = 1;
+        private int maxPage;
         public OperatorWindow()
         {
             InitializeComponent();
+            dpArrivalS.DisplayDateStart = DateTime.Now;
+            dpArrivalF.DisplayDateStart = DateTime.Now;
+            dpDepartureS.DisplayDateStart = DateTime.Now;
+            dpDepartureF.DisplayDateStart = DateTime.Now;
 
             allTours = TourRepository.GetAllTours();
             cmbStatus.SelectedIndex = 0;
             cmbType.SelectedIndex = 0;
+            cmbSort.SelectedIndex = 0;
             UpdateTours();
             log = $"Главное окно оператора | Просмотр данных";
             Logger.Log(log);
+            DataContext = allTours;
         }
 
         private void UpdateTours()
         {
-            dgTour.ItemsSource = allTours.ToList();
+            List<Tours> listTours = allTours.ToList();
+            List<Tours> listInPage = listTours.Skip((page - 1) * countTours).Take(countTours).ToList();
+            maxPage = (int)Math.Ceiling(listTours.Count * 1.0 / countTours);
+            tbCurrentPage.Content = page.ToString();
+            tbTotalPages.Content = $" из {maxPage}";
+            dgTour.ItemsSource = listInPage;
+        }
+
+        private void GoToFirst(object sender, RoutedEventArgs e)
+        {
+            page = 1;
+            UpdateTours();
+        }
+        private void GoToPreviors(object sender, RoutedEventArgs e)
+        {
+            if (page > 1)
+            {
+                page--;
+            }
+            UpdateTours();
+        }
+        private void GoToNext(object sender, RoutedEventArgs e)
+        {
+            if (page < maxPage)
+            {
+                page++;
+            }
+            UpdateTours();
+        }
+        private void GoToLast(object sender, RoutedEventArgs e)
+        {
+            page = maxPage;
+            UpdateTours();
         }
         private void SearchTours()
         {
@@ -70,7 +112,53 @@ namespace TourOperatorManagement
                     allTours = TourRepository.SearchTourdepartureture(allTours, departureS, departureF);
                 }
             }
+            Sort();
             UpdateTours();
+        }
+        private void Sort()
+        {
+            int index = cmbSort.SelectedIndex;
+            allTours = allTours.OrderBy(t => t.ID).ToList();
+            switch (index)
+            {
+                case 0:
+                    allTours = allTours.OrderBy(t => t.ID).ToList();
+                    break;
+                case 1:
+                    allTours = allTours.OrderBy(t => t.Price).ToList();
+                    break;
+                case 2:
+                    allTours = allTours.OrderByDescending(t => t.Price).ToList();
+                    break;
+                case 3:
+                    allTours = allTours.OrderBy(t => t.City).ToList();
+                    break;
+                case 4:
+                    allTours = allTours.OrderByDescending(t => t.City).ToList();
+                    break;
+                case 5:
+                    allTours = allTours.OrderBy(t => t.Country).ToList();
+                    break;
+                case 6:
+                    allTours = allTours.OrderByDescending(t => t.Country).ToList();
+                    break;
+                case 7:
+                    allTours = allTours.OrderBy(t => t.Departure).ToList();
+                    break;
+                case 8:
+                    allTours = allTours.OrderByDescending(t => t.Departure).ToList();
+                    break;
+                case 9:
+                    allTours = allTours.OrderBy(t => t.Arrival).ToList();
+                    break;
+                case 10:
+                    allTours = allTours.OrderByDescending(t => t.Arrival).ToList();
+                    break;
+            }
+        }
+        private void cmbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SearchTours();
         }
         private void cmbStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -85,7 +173,6 @@ namespace TourOperatorManagement
             if (!char.IsDigit(e.Text, 0))
                 e.Handled = true;
         }
-
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             AddEditTourWindow window = new AddEditTourWindow(null);
@@ -94,7 +181,6 @@ namespace TourOperatorManagement
             Logger.Log(log);
             this.Close();
         }
-
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             var selected = (Tours)dgTour.SelectedItem;
@@ -114,7 +200,6 @@ namespace TourOperatorManagement
                 Logger.Log(log);
             }
         }
-
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             var selected = (Tours)dgTour.SelectedItem;
@@ -134,6 +219,26 @@ namespace TourOperatorManagement
                 log = $"Главное окно оператора | Попытка снятия с продажи без выбора строки";
                 Logger.Log(log);
             }
+        }
+        private void dgTour_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var selected = (Tours)dgTour.SelectedItem;
+            if (selected != null)
+            {
+                Tours tour = TourRepository.GetToutByID(selected.ID);
+                AddEditTourWindow window = new AddEditTourWindow(tour);
+                window.Show();
+                log = $"Главное окно оператора | Переход к редактированию тура №{tour.ID}";
+                Logger.Log(log);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Выберите тур для редактирования");
+                log = $"Главное окно оператора | Нажатие на редактирование без выбора строки";
+                Logger.Log(log);
+            }
+            UpdateTours();
         }
     }
 }

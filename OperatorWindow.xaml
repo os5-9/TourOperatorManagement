@@ -5,11 +5,149 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourOperatorManagement"
         mc:Ignorable="d"
-    Title="" Height="940" Width="1400" MinWidth="850" MinHeight="800" WindowStartupLocation="CenterScreen">
+    Title="" Height="940" Width="1400" MinWidth="1200" MinHeight="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" MaxHeight="180"/>
+            <RowDefinition  />
+            <RowDefinition Height="36"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="wPanel" Grid.Column="1" MaxWidth="1700" Grid.Row="0" Margin="0,0,0,10">
+            <WrapPanel>
+                <Canvas Width="165" Height="80">
+                    <Label Content="Сортировка" Canvas.Left="5"/>
+                    <ComboBox x:Name="cmbSort" Canvas.Left="5" Canvas.Top="40" SelectionChanged="cmbSort_SelectionChanged">
+                        <ComboBoxItem Content="По умолчанию"/>
+                        <ComboBoxItem Content="По возрастанию цены"/>
+                        <ComboBoxItem Content="По убыванию цены"/>
+                        <ComboBoxItem Content="По возрастанию города"/>
+                        <ComboBoxItem Content="По убыванию города"/>
+                        <ComboBoxItem Content="По возрастанию страны"/>
+                        <ComboBoxItem Content="По убыванию страны"/>
+                        <ComboBoxItem Content="По возрастанию даты отправки"/>
+                        <ComboBoxItem Content="По убыванию даты отправки"/>
+                        <ComboBoxItem Content="По возрастанию даты прибытия"/>
+                        <ComboBoxItem Content="По убыванию даты прибытия"/>
+                    </ComboBox>
+                </Canvas>
+                <Canvas Width="165" Height="80">
+                    <Label Content="Статус путёвки" Canvas.Left="5"/>
+                    <ComboBox x:Name="cmbStatus" Canvas.Left="5" Canvas.Top="40" SelectionChanged="cmbStatus_SelectionChanged">
+                        <ComboBoxItem Content="Все"/>
+                        <ComboBoxItem Content="Обычная"/>
+                        <ComboBoxItem Content="Горячая"/>
+                    </ComboBox>
+                </Canvas>
+                <Canvas Width="165" Height="80">
+                    <Label Content="Тип путёвки" Canvas.Left="5"/>
+                    <ComboBox x:Name="cmbType" Canvas.Top="40" Height="33" Canvas.Left="5" SelectionChanged="cmbStatus_SelectionChanged" >
+                        <ComboBoxItem Content="Все"/>
+                        <ComboBoxItem Content="Прямой полет"/>
+                        <ComboBoxItem Content="С пересадками"/>
+                    </ComboBox>
+                </Canvas>
+                <Canvas Width="165" Height="80">
+                    <Label Content="Город" Canvas.Left="5"/>
+                    <TextBox x:Name="tbCity" Height="33" Canvas.Left="5" FontSize="20" Width="150" Canvas.Top="40" TextChanged="tbCity_TextChanged"/>
+                </Canvas>
+                <Canvas Width="165" Height="80">
+                    <Label Content="Страна" Canvas.Left="5" Width="81" Height="40" FontSize="20"/>
+                    <TextBox x:Name="tbCountry" Height="33" Canvas.Left="5" FontSize="20" Width="150" Canvas.Top="40" TextChanged="tbCity_TextChanged"/>
+                </Canvas>
+                <Canvas Width="165" Height="80">
+                    <Label Content="Цена" Canvas.Left="5" Width="66" Height="40" FontSize="20"/>
+                    <TextBox x:Name="tbPrice"  Height="33" Canvas.Left="5" FontSize="20" Width="150" Canvas.Top="40" PreviewTextInput="tbPrice_PreviewTextInput" TextChanged="tbCity_TextChanged"/>
+                </Canvas>
+                <Canvas Width="310" Height="87">
+                    <Label Content="Дата отправки" Canvas.Left="70" Canvas.Top="2" Width="166" Height="38" FontSize="20"/>
+                    <DatePicker x:Name="dpArrivalS" Canvas.Left="5" Canvas.Top="40" SelectedDateChanged="cmbStatus_SelectionChanged"/>
+                    <DatePicker x:Name="dpArrivalF" Canvas.Left="155" Canvas.Top="40" SelectedDateChanged="cmbStatus_SelectionChanged"/>
+                </Canvas>
+                <Canvas Width="310" Height="87">
+                    <Label Content="Дата прибытия" Canvas.Left="70" Canvas.Top="0"/>
+                    <DatePicker x:Name="dpDepartureS" Canvas.Left="5" Canvas.Top="40" SelectedDateChanged="cmbStatus_SelectionChanged"/>
+                    <DatePicker x:Name="dpDepartureF" Canvas.Left="155" Canvas.Top="40" SelectedDateChanged="cmbStatus_SelectionChanged"/>
+                </Canvas>
+
+                <Canvas Width="130" Height="87">
+                    <Button x:Name="btnAdd" Content="Добавить" Canvas.Left="5" Canvas.Top="25" Click="btnAdd_Click"/>
+                </Canvas>
+                <Canvas Width="190" Height="87">
+                    <Button x:Name="btnEdit" Content="Редактировать" Width="180" Canvas.Left="5" Canvas.Top="25" Click="btnEdit_Click"/>
+                </Canvas>
+                <Canvas Width="190" Height="87">
+                    <Button x:Name="btnRemove" Content="Снять с продажи" Width="180" Canvas.Left="5" Canvas.Top="25" Click="btnRemove_Click"/>
+                </Canvas>
+            </WrapPanel>
+        </StackPanel>
+        <ListView Grid.Column="1" x:Name="dgTour" Grid.Row="1" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="dgTour_MouseDoubleClick">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border x:Name="brd" Padding="5" BorderBrush="#FF29A81B" BorderThickness="1" >
+                        <Grid Width="560">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="24" Grid.Row="1" Grid.Column="1" Text="{Binding City}"/>
+                            <TextBlock FontSize="24" Grid.Row="1" Grid.Column="3" Text="{Binding Country}"/>
+                            <TextBlock FontSize="24" Grid.Row="1" Grid.Column="5" Text="{Binding Price, StringFormat={} {0} руб.}"/>
+                            <TextBlock FontSize="24" Grid.Row="2" Grid.Column="1" Text="{Binding Departure, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <TextBlock FontSize="24" Grid.Row="2" Grid.Column="3" Text="{Binding Arrival, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <TextBlock FontSize="24" Name="tbState" Grid.Row="3" Grid.Column="1" Text="{Binding TourStates.Name}"/>
+                            <TextBlock FontSize="24" Grid.Row="3" Grid.Column="3" Text="{Binding TourType.Name}"/>
+                            <TextBlock FontSize="24" Grid.Row="3" Grid.Column="5" Text="{Binding Tickets, StringFormat={} {0} билет(ов/а)}"/>
+                        </Grid>
+                    </Border>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding State}" Value="2">
+                            <Setter TargetName="tbState" Property="Background" Value="#FF29A81B"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0" Margin="0,0,0,10">
             <StackPanel x:Name="wPanel">
-                <WrapPanel Grid.Row="0">
+                <WrapPanel>
+                    <Canvas Width="165" Height="80">
+                        <Label Content="Сортировка" Canvas.Left="5"/>
+                        <ComboBox x:Name="cmbSort" Canvas.Left="5" Canvas.Top="40" SelectionChanged="cmbSort_SelectionChanged">
+                            <ComboBoxItem Content="По умолчанию"/>
+                            <ComboBoxItem Content="По возрастанию цены"/>
+                            <ComboBoxItem Content="По убыванию цены"/>
+                            <ComboBoxItem Content="По возрастанию города"/>
+                            <ComboBoxItem Content="По убыванию города"/>
+                            <ComboBoxItem Content="По возрастанию страны"/>
+                            <ComboBoxItem Content="По убыванию страны"/>
+                            <ComboBoxItem Content="По возрастанию даты отправки"/>
+                            <ComboBoxItem Content="По убыванию даты отправки"/>
+                            <ComboBoxItem Content="По возрастанию даты прибытия"/>
+                            <ComboBoxItem Content="По убыванию даты прибытия"/>
+                        </ComboBox>
+                    </Canvas>
                     <Canvas Width="165" Height="80">
                         <Label Content="Статус путёвки" Canvas.Left="5"/>
                         <ComboBox x:Name="cmbStatus" Canvas.Left="5" Canvas.Top="40" SelectionChanged="cmbStatus_SelectionChanged">
@@ -19,7 +157,7 @@
                         </ComboBox>
                     </Canvas>
                     <Canvas Width="165" Height="80">
-                        <Label Content="Тип" Canvas.Left="5"/>
+                        <Label Content="Тип путёвки" Canvas.Left="5"/>
                         <ComboBox x:Name="cmbType" Canvas.Top="40" Height="33" Canvas.Left="5" SelectionChanged="cmbStatus_SelectionChanged" >
                             <ComboBoxItem Content="Все"/>
                             <ComboBoxItem Content="Прямой полет"/>
@@ -59,9 +197,54 @@
                     </Canvas>
                 </WrapPanel>
             </StackPanel>
-            <DataGrid x:Name="dgTour" FontSize="20" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
+                <ListView x:Name="dgTour" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="dgTour_MouseDoubleClick">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:Name="brd" Padding="5" BorderBrush="#FF29A81B" BorderThickness="1" >
+                            <Grid Width="480">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="5"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="10"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding City}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Country}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding Price, StringFormat={} {0:F2} руб.}"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Departure, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                                <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding Arrival, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                                <TextBlock Name="tbState" Grid.Row="3" Grid.Column="1" Text="{Binding TourStates.Name}"/>
+                                <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding TourType.Name}"/>
+                                <TextBlock Grid.Row="3" Grid.Column="5" Text="{Binding Tickets, StringFormat={} {0} билетов}"/>
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding State}" Value="2">
+                                <Setter TargetName="tbState" Property="Background" Value="#FF29A81B"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <DataGrid x:Name="dgTor" Visibility="Collapsed" FontSize="20" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Номер" Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="Город" Binding="{Binding City}"/>
                     <DataGridTextColumn Header="Страна" Binding="{Binding Country}"/>
                     <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
@@ -72,6 +255,14 @@
                     <DataGridTextColumn Header="Кол-во билетов" Binding="{Binding Tickets}"/>
                 </DataGrid.Columns>
             </DataGrid>
+        </StackPanel>-->
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="gtf" Width="40" Height="34" FontSize="14" Content="&lt;&lt;" Click="GoToFirst" />
+            <Button x:Name="gtp" Width="40" Height="34" FontSize="14" Content="&lt;" Click="GoToPreviors"/>
+            <Label x:Name="tbCurrentPage" FontSize="18" VerticalContentAlignment="Center"/>
+            <Label x:Name="tbTotalPages" FontSize="18" VerticalContentAlignment="Center"/>
+            <Button x:Name="gtn" Width="40" Height="34" Content="&gt;" Click="GoToNext"/>
+            <Button x:Name="gtl" Width="40" Height="34" Content="&gt;&gt;" Click="GoToLast"/>
         </StackPanel>
     </Grid>
 </Window>

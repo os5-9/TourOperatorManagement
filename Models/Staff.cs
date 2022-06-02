@@ -15,7 +15,7 @@ namespace TourOperatorManagement.Models
             Track = new HashSet<Track>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public string FullName { get; set; }
