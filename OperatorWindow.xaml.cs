@@ -33,7 +33,6 @@ namespace TourOperatorManagement
             UpdateTours();
             log = $"Главное окно оператора | Просмотр данных";
             Logger.Log(log);
-            DataContext = allTours;
         }
 
         private void UpdateTours()
@@ -219,6 +218,7 @@ namespace TourOperatorManagement
                 log = $"Главное окно оператора | Попытка снятия с продажи без выбора строки";
                 Logger.Log(log);
             }
+            SearchTours();
         }
         private void dgTour_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
