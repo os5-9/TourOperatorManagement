@@ -56,6 +56,7 @@ namespace TourOperatorManagement
                 tour.State = cmbStatus.SelectedIndex + 1;
                 tour.Type = cmbType.SelectedIndex + 1;
                 tour.IsExists = 1;
+                tour.Tickets = int.Parse(tbTickets.Text);
                 if (tour.ID != 0)
                 {
                     if (TourRepository.EditTour())
@@ -91,15 +92,15 @@ namespace TourOperatorManagement
         private bool Validation()
         {
             StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrEmpty(tbCity.Text))
+            if (string.IsNullOrWhiteSpace(tbCity.Text))
             {
                 errors.AppendLine("Введите город путевки");
             }
-            if (string.IsNullOrEmpty(tbCountry.Text))
+            if (string.IsNullOrWhiteSpace(tbCountry.Text))
             {
                 errors.AppendLine("Введите страну путевки");
             }
-            if (string.IsNullOrEmpty(tbPrice.Text))
+            if (string.IsNullOrWhiteSpace(tbPrice.Text))
             {
                 errors.AppendLine("Введите цену за билет");
             }
@@ -119,7 +120,7 @@ namespace TourOperatorManagement
             {
                 errors.AppendLine("Выберите тип путевки");
             }
-            if (string.IsNullOrEmpty(tbTickets.Text))
+            if (string.IsNullOrWhiteSpace(tbTickets.Text))
             {
                 errors.AppendLine("Введите количество билетов");
             }

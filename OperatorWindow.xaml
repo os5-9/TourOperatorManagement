@@ -110,8 +110,8 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="10"/>
                             </Grid.RowDefinitions>
-                            <TextBlock FontSize="24" Grid.Row="1" Grid.Column="1" Text="{Binding City}"/>
-                            <TextBlock FontSize="24" Grid.Row="1" Grid.Column="3" Text="{Binding Country}"/>
+                            <TextBlock FontSize="24" Grid.Row="1" Grid.Column="1" Text="{Binding City}" Grid.ColumnSpan="3"/>
+                            <TextBlock FontSize="24" Grid.Row="1" Grid.Column="3" Text="{Binding Country}" Visibility="Collapsed"/>
                             <TextBlock FontSize="24" Grid.Row="1" Grid.Column="5" Text="{Binding Price, StringFormat={} {0} руб.}"/>
                             <TextBlock FontSize="24" Grid.Row="2" Grid.Column="1" Text="{Binding Departure, StringFormat=\{0:dd.MM.yyyy\}}"/>
                             <TextBlock FontSize="24" Grid.Row="2" Grid.Column="3" Text="{Binding Arrival, StringFormat=\{0:dd.MM.yyyy\}}"/>
