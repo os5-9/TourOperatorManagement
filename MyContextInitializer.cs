@@ -31,12 +31,12 @@ namespace TourOperatorManagement
             TourStates state2 = new TourStates
             {
                 Code = 2,
-                Name = "Горячая"
+                Name = "Горящая"
             };
             TourType type = new TourType
             {
                 Code = 1,
-                Name = "Прямой полет"
+                Name = "Прямой путь"
             };
             TourType type2 = new TourType
             {

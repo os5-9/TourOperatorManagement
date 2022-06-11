@@ -45,10 +45,10 @@
         <DatePicker x:Name="dpArrival" SelectedDate="{Binding Arrival}" Grid.Column="3" Grid.Row="5" Width="auto"/>
         <ComboBox x:Name="cmbStatus" Grid.Column="3" Grid.Row="6" Width="auto">
             <ComboBoxItem Content="Обычная"/>
-            <ComboBoxItem Content="Горячая"/>
+            <ComboBoxItem Content="Горящая"/>
         </ComboBox>
         <ComboBox x:Name="cmbType" Grid.Column="3" Grid.Row="7" Width="auto">
-            <ComboBoxItem Content="Прямой полет"/>
+            <ComboBoxItem Content="Прямой путь"/>
             <ComboBoxItem Content="С пересадками"/>
         </ComboBox>
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="8">
@@ -59,8 +59,8 @@
                 </Validation.ErrorTemplate>
             </TextBox>
             <Button x:Name="btnPlus" Content="+" Width="40" Click="btnPlus_Click"/>
-        </StackPanel>        
-        
+        </StackPanel>
+
         <Button x:Name="btnCancel" Content="Отмена" Grid.Column="1" Grid.Row="10" Click="btnCancel_Click"/>
         <Button x:Name="btnSave" Content="Сохранить" Grid.Column="3" Grid.Row="10" Click="btnSave_Click"/>
     </Grid>

@@ -37,7 +37,7 @@ namespace TourOperatorManagement
                     {
                         MessageBox.Show("Ваш аккаунт в качестве оператора отклонен");
                     }
-                    else
+                    if (person.IsDenied == 0)
                     {
                         MessageBox.Show("Ваш аккаунт на верификации, попробуйте позже");
                     }

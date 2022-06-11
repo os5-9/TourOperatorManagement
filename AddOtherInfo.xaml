@@ -1,0 +1,85 @@
+﻿<Window x:Class="TourOperatorManagement.AddOtherInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:TourOperatorManagement"
+        mc:Ignorable="d"
+        Title="Дополнительная информация о туре" Height="780" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="310"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock VerticalAlignment="Center" Text="Средство размещения" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+        <TextBlock VerticalAlignment="Center" Text="Наименование" Grid.Column="1" Grid.Row="2"/>
+        <TextBlock VerticalAlignment="Center" Text="Адрес" Grid.Column="1" Grid.Row="3"/>
+        <TextBlock VerticalAlignment="Center" Text="Категория средства размещения" Grid.Column="1" Grid.Row="4"/>
+        <TextBlock VerticalAlignment="Center" Text="Дата заезда" Grid.Column="1" Grid.Row="5"/>
+        <TextBlock VerticalAlignment="Center" Text="Дата выезда" Grid.Column="1" Grid.Row="6"/>
+        <TextBlock VerticalAlignment="Center" Text="Общая цена тура" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+        <TextBlock VerticalAlignment="Center" Text="Цена за билет цифрами" Grid.Column="1" Grid.Row="8"/>
+        <TextBlock VerticalAlignment="Center" Text="Цена за билет прописью" Grid.Column="1" Grid.Row="9"/>
+        <TextBlock VerticalAlignment="Center" Text="Информация об услугах перевозки" Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+        <TextBlock Text="Маршрут" VerticalAlignment="Center" Grid.Column="1" Grid.Row="11"/>
+        <TextBlock Text="Номер рейса" VerticalAlignment="Center" Grid.Column="1" Grid.Row="12"/>
+        <TextBlock Text="Дата и время" VerticalAlignment="Center" Grid.Column="1" Grid.Row="13"/>
+
+        <TextBox x:Name="tbNameHotel" Width="auto" Grid.Column="3" Grid.Row="2"/>
+        <TextBox x:Name="tbAddressHotel" Width="auto" Grid.Column="3" Grid.Row="3"/>
+        <ComboBox x:Name="cmbCategoryHotel" Width="auto" Grid.Column="3" Grid.Row="4">
+            <ComboBoxItem Content="мини-отель"/>
+            <ComboBoxItem Content="без звезд"/>
+            <ComboBoxItem Content="1 звезда"/>
+            <ComboBoxItem Content="2 звезды"/>
+            <ComboBoxItem Content="3 звезды"/>
+            <ComboBoxItem Content="4 звезды"/>
+            <ComboBoxItem Content="5 звезд"/>
+        </ComboBox>
+        <DatePicker x:Name="dpGo" Width="auto" Grid.Column="3" Grid.Row="5"/>
+        <DatePicker x:Name="dpOut" Width="auto" Grid.Column="3" Grid.Row="6"/>
+
+        <TextBox x:Name="tbPriceDigit" Width="auto" Grid.Column="3" Grid.Row="8" PreviewTextInput="ControlForDigit"/>
+        <TextBox x:Name="tbPriceLetters" Width="auto" Grid.Column="3" Grid.Row="9"/>
+
+        <TextBox x:Name="tbRouteName" Width="auto" Grid.Column="3" Grid.Row="11"/>
+        <TextBox x:Name="tbReisNumber" Width="auto" Grid.Column="3" Grid.Row="12"/>
+        <DatePicker x:Name="dpRoute" Width="260"  Grid.Column="3" Grid.Row="13" HorizontalAlignment="Left"/>
+        <xctk:MaskedTextBox x:Name="tbTime" Mask="00:00" Width="60" HorizontalContentAlignment="Center"  Grid.Column="3" Grid.Row="13" Margin="250,0,0,0"/>
+        <Button x:Name="btnAddRoute" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="3" Content="Добавить маршрут" Width="300" Click="btnAddRoute_Click" />
+        <DataGrid x:Name="dgRoutes" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="3" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Маршрут" Binding="{Binding RouteName}"/>
+                <DataGridTextColumn Header="Номер рейса" Binding="{Binding ReisNumber}"/>
+                <DataGridTextColumn Header="Дата и время" Binding="{Binding RouteDateTime, StringFormat=\{0:dd.MM.yyyy HH:mm\}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Column="3" Grid.Row="17" Click="btnSave_Click"/>
+    </Grid>
+</Window>

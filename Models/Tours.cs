@@ -1,3 +1,4 @@
+
 namespace TourOperatorManagement.Models
 {
     using System;
@@ -38,7 +39,12 @@ namespace TourOperatorManagement.Models
 
         public byte? IsExists { get; set; }
 
+        /// <summary>
+        /// is tour approved by MainManager, has values: 0 - created, not approved; 1 - approved; 2 - not approved
+        /// </summary>
         public byte? IsApproved { get; set; }
+
+        public string Attachment { get; set; }
 
         public virtual TourStates TourStates { get; set; }
 

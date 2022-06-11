@@ -3,6 +3,8 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using TourOperatorManagement.Models;
+using Word = Microsoft.Office.Interop.Word;
+
 
 namespace TourOperatorManagement
 {
@@ -11,7 +13,6 @@ namespace TourOperatorManagement
     /// </summary>
     public partial class AddEditTourWindow : Window
     {
-        private static string log;
         private Tours tour;
 
         public AddEditTourWindow(Tours currentTour)
@@ -25,6 +26,7 @@ namespace TourOperatorManagement
                 this.Title = "Добавление тура";
                 tbTickets.Text = "0";
                 tour.Tickets = 0;
+                tour.Country = "Россия";
             }
             else
             {
@@ -57,11 +59,17 @@ namespace TourOperatorManagement
                 tour.Type = cmbType.SelectedIndex + 1;
                 tour.IsExists = 1;
                 tour.Tickets = int.Parse(tbTickets.Text);
+
                 if (tour.ID != 0)
                 {
                     if (TourRepository.EditTour())
                     {
                         MessageBox.Show("Изменение данных прошло успешно");
+                        if (tour.Attachment == null)
+                        {
+                            AddOtherInfo info = new AddOtherInfo(tour);
+                            info.ShowDialog();
+                        }
                         btnCancel_Click(sender, e);
                     }
                     else
@@ -75,6 +83,8 @@ namespace TourOperatorManagement
                     if (TourRepository.AddTour(tour))
                     {
                         MessageBox.Show("Добавление данных прошло успешно");
+                        AddOtherInfo info = new AddOtherInfo(tour);
+                        info.ShowDialog();
                         btnCancel_Click(sender, e);
                     }
                     else
