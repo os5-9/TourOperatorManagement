@@ -43,6 +43,14 @@ namespace TourOperatorManagement
             tbCurrentPage.Content = page.ToString();
             tbTotalPages.Content = $" из {maxPage}";
             dgTour.ItemsSource = listInPage;
+            if (listInPage.Count == 0)
+            {
+                pPagination.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                pPagination.Visibility = Visibility.Visible;
+            }
         }
 
         private void GoToFirst(object sender, RoutedEventArgs e)
@@ -102,13 +110,13 @@ namespace TourOperatorManagement
                 {
                     var arrivalS = dpArrivalS.SelectedDate.Value;
                     var arrivalF = dpArrivalF.SelectedDate.Value;
-                    allTours = TourRepository.SearchTourarrivalal(allTours, arrivalS, arrivalF);
+                    allTours = TourRepository.SearchTourDeparture(allTours, arrivalS, arrivalF);
                 }
                 if ((dpDepartureS.SelectedDate != null) && (dpDepartureF.SelectedDate != null))
                 {
                     var departureS = dpDepartureS.SelectedDate.Value;
                     var departureF = dpDepartureF.SelectedDate.Value;
-                    allTours = TourRepository.SearchTourdepartureture(allTours, departureS, departureF);
+                    allTours = TourRepository.SearchTourArrival(allTours, departureS, departureF);
                 }
             }
             Sort();

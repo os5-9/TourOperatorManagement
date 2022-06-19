@@ -128,7 +128,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel x:Name="pPagination" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="gtf" Width="40" Height="34" FontSize="14" Content="&lt;&lt;" Click="GoToFirst" />
             <Button x:Name="gtp" Width="40" Height="34" FontSize="14" Content="&lt;" Click="GoToPreviors"/>
             <Label x:Name="tbCurrentPage" FontSize="18" VerticalContentAlignment="Center"/>

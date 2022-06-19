@@ -89,14 +89,14 @@ namespace TourOperatorManagement
             var list = tours.Where(x => x.Price <= price);
             return list;
         }
-        public static IEnumerable<Tours> SearchTourarrivalal(IEnumerable<Tours> tours, DateTime arrivalS, DateTime arrivalF)
-        {
-            var list = tours.Where(x => (x.Arrival >= arrivalS && x.Arrival <= arrivalF));
-            return list;
-        }
-        public static IEnumerable<Tours> SearchTourdepartureture(IEnumerable<Tours> tours, DateTime departureS, DateTime departureF)
+        public static IEnumerable<Tours> SearchTourDeparture(IEnumerable<Tours> tours, DateTime departureS, DateTime departureF)
         {
             var list = tours.Where(x => (x.Departure >= departureS && x.Departure <= departureF));
+            return list;
+        }
+        public static IEnumerable<Tours> SearchTourArrival(IEnumerable<Tours> tours, DateTime arrivalS, DateTime arrivalF)
+        {
+            var list = tours.Where(x => (x.Arrival >= arrivalS && x.Arrival <= arrivalF));
             return list;
         }
     }
