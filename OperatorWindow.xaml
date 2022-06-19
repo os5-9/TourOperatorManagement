@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourOperatorManagement"
         mc:Ignorable="d"
-    Title="Окно туроператора" Height="940" Width="1400" MinWidth="1200" MinHeight="800" WindowStartupLocation="CenterScreen">
+    Title="Окно туроператора" Height="940" Width="1400" MinWidth="1200" MinHeight="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>

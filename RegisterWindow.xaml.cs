@@ -51,5 +51,11 @@ namespace TourOperatorManagement
                 MessageBox.Show("Заполните все поля");
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            AuthWindow auth = new AuthWindow();
+            auth.Show();
+        }
     }
 }

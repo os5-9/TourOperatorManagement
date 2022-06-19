@@ -234,5 +234,11 @@ namespace TourOperatorManagement
             }
             UpdateTours();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            AuthWindow auth = new AuthWindow();
+            auth.Show();
+        }
     }
 }
